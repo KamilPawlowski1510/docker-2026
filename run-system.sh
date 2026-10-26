@@ -11,3 +11,5 @@ docker run -d --net netassignment --name database -e POSTGRES_USER=dbadmin -e PO
 
 sleep 30
 docker build --target seeder -t seeder .
+
+docker run --rm -d --net netassignment --name seeder -e SQLITE_FILE=/app/Chinook.db -e DATABASE_URL=postgres://dbadmin:db_password1@database:5432/musicdb -v "$(pwd)/Chinook.db:/app/Chinook.db:ro" seeder
