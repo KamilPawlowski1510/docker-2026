@@ -2,5 +2,8 @@
 
 set -e
 
-docker network rm netassignment
+docker stop agent
+docker rm agent
+
 echo "Network removed"
+docker network rm netassignment
