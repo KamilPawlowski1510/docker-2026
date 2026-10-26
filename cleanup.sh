@@ -13,5 +13,7 @@ docker rm database
 
 docker rmi seeder
 
+docker rmi agent
+
 echo "Network removed"
 docker network rm netassignment
