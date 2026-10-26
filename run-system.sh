@@ -19,3 +19,5 @@ docker run -d --net netassignment --name mcpgateway -v /var/run/docker.sock:/var
 
 sleep 60
 docker build --target agent -t agent .
+
+docker run --net netassignment --name aiagent -v "$(pwd)/secret.ollama-api-key:/run/secrets/openai-api-key:ro" -e MCP_SERVER_URL=http://mcpgateway:8811/sse -e DATABASE_DIALECT=PostgreSQL -e QUESTION="What are the top 3 albums by sales?" -e OPENAI_API_BASE_URL=https://ollama.com/v1 -e OPENAI_MODEL_NAME=gpt-oss:20b agent
