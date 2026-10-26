@@ -3,10 +3,10 @@
 set -e
 
 docker stop mcpgateway
-docker rm mcpgateway
+docker rm -v mcpgateway
 
 docker stop database
-docker rm database
+docker rm -v database
 
 docker rmi seeder
 
