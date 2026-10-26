@@ -2,8 +2,8 @@
 
 set -e
 
-docker stop agent
-docker rm agent
+docker stop aiagent
+docker rm aiagent
 
 docker stop mcpgateway
 docker rm mcpgateway
