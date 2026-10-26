@@ -12,9 +12,8 @@ docker run -d --net netassignment --name database -e POSTGRES_USER=dbadmin -e PO
 sleep 30
 docker build --target seeder -t seeder .
 
-docker run --rm -d --net netassignment --name seeder -e SQLITE_FILE=/app/Chinook.db -e DATABASE_URL=postgres://dbadmin:db_password1@database:5432/musicdb -v "$(pwd)/Chinook.db:/app/Chinook.db:ro" seeder
+docker run --rm --net netassignment --name seeder -e SQLITE_FILE=/app/Chinook.db -e DATABASE_URL=postgres://dbadmin:db_password1@database:5432/musicdb -v "$(pwd)/Chinook.db:/app/Chinook.db:ro" seeder
 
-docker wait seeder
 docker run -d --net netassignment --name mcpgateway -v /var/run/docker.sock:/var/run/docker.sock -v "$(pwd)/mcp_config.yaml:/mcp_config.yaml:ro" -v "$(pwd)/mcp_secret.env:/run/secrets/database-url:ro" docker/mcp-gateway:latest --transport=sse --secrets=/run/secrets/database-url --allow-unauthenticated --servers=cockroachdb --tools=execute_query --config=/mcp_config.yaml
 
 sleep 60
